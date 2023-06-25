@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const requestSchema = mongoose.Schema({
     userDetails: Object,
     place: String,
+    company: String,
     status: String,
     seaction: String,
     entryDate: String,
