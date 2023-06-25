@@ -27,6 +27,17 @@ requestRoute.get('/:user', async (req, res) => {
 
 })
 
+requestRoute.get('/statuscount', async (req, res) => {
+    try {
+
+        res.send('Here we will see all the count of diff status')
+
+    } catch (err) {
+        res.send({ "msg": "Something wrnt wrong", "sucess": false })
+        console.log(err)
+    }
+})
+
 requestRoute.post('/create', async (req, res) => {
     try {
         const request = new requestModel(req.body)
@@ -39,12 +50,14 @@ requestRoute.post('/create', async (req, res) => {
     }
 })
 
-requestRoute.patch('/update', async (req, res) => {
+requestRoute.patch('/update/:_id', async (req, res) => {
     try {
-        const query = req.query
+        const { _id } = req.params
+        const { seaction, status } = req.body
 
-        await requestModel.findByIdAndUpdate({ _id: query.id }, { status: query.status })
-        res.send("Status has been changed")
+        await requestModel.findByIdAndUpdate({ _id }, { seaction, status })
+
+        res.send({ 'msg': 'Request has been update', 'sucess': true })
 
     } catch (err) {
         res.send({ "msg": "Request not updated", "sucess": false })
