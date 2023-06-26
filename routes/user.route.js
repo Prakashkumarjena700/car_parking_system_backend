@@ -73,7 +73,7 @@ userRoute.post('/login', async (req, res) => {
     }
 })
 
-userRoute.delete('/:_id', async (req, res) => {
+userRoute.delete('/delete/:_id', async (req, res) => {
     try {
         const { _id } = req.params
 
