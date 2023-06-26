@@ -29,7 +29,7 @@ userRoute.get('/:_id', async (req, res) => {
 })
 
 userRoute.post('/register', async (req, res) => {
-    const { name, email, password, avatar, dob, city, country, drivingExperience, insuranceNumber, role, phone } = req.body
+    const { name, email, password, avatar, dob, city, country, drivingExperience, insuranceNumber, role, phone, gender } = req.body
     try {
         const user = await userModel.find({ email })
         if (user.length > 0) {
@@ -39,7 +39,7 @@ userRoute.post('/register', async (req, res) => {
                 if (err) {
                     res.send("Something went wrong")
                 } else {
-                    const user = new userModel({ name, email, password: hash, avatar, dob, city, country, drivingExperience, insuranceNumber, role, phone })
+                    const user = new userModel({ name, email, password: hash, avatar, dob, city, country, drivingExperience, insuranceNumber, role, phone, gender })
                     await user.save()
                     res.send({ "msg": "new user has been register", "sucess": true })
                 }
