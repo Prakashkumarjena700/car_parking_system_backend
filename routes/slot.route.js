@@ -55,7 +55,7 @@ slotRoute.patch('/booking/:_id', async (req, res) => {
         await slotModel.findByIdAndUpdate({ _id }, { $pull: { avelableSlot: bookingSlotName } })
 
         res.send({ 'msg': `${bookingSlotName} has been booked`, 'success': true })
-        
+
     } catch (err) {
         res.send({ 'msg': 'Not yet booked', 'success': false })
         console.log(err)
@@ -73,6 +73,19 @@ slotRoute.patch('/end/:_id', async (req, res) => {
         res.send({ 'msg': `${removeSlotName} has been finish`, 'success': true })
     } catch (err) {
         res.send({ 'msg': 'Not able to process something went wrong', 'success': false })
+        console.log(err)
+    }
+})
+
+slotRoute.get('/:_id', async (req, res) => {
+    try {
+
+        const { _id } = req.params
+
+        let particularSlot = await slotModel.find({ _id })
+        res.send(particularSlot)
+    } catch (err) {
+        res.send({ 'msg': 'Not found' })
         console.log(err)
     }
 })

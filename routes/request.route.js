@@ -27,16 +27,6 @@ requestRoute.get('/:user', async (req, res) => {
 
 })
 
-requestRoute.get('/statuscount', async (req, res) => {
-    try {
-
-        res.send('Here we will see all the count of diff status')
-
-    } catch (err) {
-        res.send({ "msg": "Something wrnt wrong", "sucess": false })
-        console.log(err)
-    }
-})
 
 requestRoute.post('/create', async (req, res) => {
     try {
