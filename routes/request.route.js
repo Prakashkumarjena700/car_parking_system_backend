@@ -68,6 +68,20 @@ requestRoute.delete('/delete/:_id', async (req, res) => {
     }
 })
 
+requestRoute.patch('/edit/:_id', async (req, res) => {
+    try {
+        const { _id } = req.params
+
+        await requestModel.findByIdAndUpdate({ _id }, req.body)
+
+        res.send({ 'msg': 'Request has been update' })
+
+    } catch (err) {
+        console.log(err)
+        res.send({ 'msg': 'Not updated yet', 'success': false })
+    }
+})
+
 module.exports = {
     requestRoute
 }
